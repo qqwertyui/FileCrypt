@@ -5,8 +5,7 @@
 
 enum Status {
     OK = 0,
-    INVALID_ARGS = 1,
-    GENERATION_ERROR = 2
+    INVALID_ARGS = 1
 };
 
 DEFINE_string(mode, "", "Operation mode [encrypt, decrypt, generate]");

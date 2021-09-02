@@ -4,7 +4,7 @@
 #include <string>
 
 namespace Keygen {
-    bool generate(std::string path);
+    void generate(std::string path);
 }
 
 #endif

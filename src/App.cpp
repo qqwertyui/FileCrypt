@@ -17,9 +17,15 @@ int main(int argc, char **argv) {
         Log::error(gflags::ProgramUsage());
         return Status::INVALID_ARGS;
     } else if(FLAGS_mode.compare("generate") == 0) {
-        if(Keygen::generate(FLAGS_path) == false) {
-            Log::error("Key generation failed\n");
-            return Status::GENERATION_ERROR;
+        if(FLAGS_path.empty() == true) {
+            Log::error("You need to pass --path\n");
+            return Status::INVALID_ARGS;
+        }
+        try {
+            Keygen::generate(FLAGS_path);
+        } catch(FileCryptException &e) {
+            Log::errorf("Key generation failed: %s\n", e.what());
+            return e.get_code();
         }
         boost::filesystem::path full_path(boost::filesystem::current_path());
         Log::infof("Key was written at %s\\%s\n", full_path.string().c_str(), FLAGS_path.c_str());
