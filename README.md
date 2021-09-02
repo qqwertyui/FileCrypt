@@ -10,17 +10,13 @@ It uses AES-CBC mode with 128 bit key length. Can be used to protect files on di
 
 3. Basic usage:
 
-Help:
-./fcrypt --help
+- Help: ./fcrypt --help
 
-Generate key:
-./fcrypt --mode generate --path ./key
+- Generate key: ./fcrypt --mode generate --path ./key
 
-Encrypt file:
-./fcrypt --mode encrypt --path $env:USERPROFILE/Desktop/secret.txt --key path/to/key
+- Encrypt file: ./fcrypt --mode encrypt --path $env:USERPROFILE/Desktop/secret.txt --key path/to/key
 
-Decrypt file:
-./fcrypt --mode decrypt --path $env:USERPROFILE/Desktop/secret.txt --key path/to/key
+- Decrypt file: ./fcrypt --mode decrypt --path $env:USERPROFILE/Desktop/secret.txt --key path/to/key
 
 4. Build
 - git clone https://github.com/qqwertyui/FileCrypt.git && cd FileCrypt
