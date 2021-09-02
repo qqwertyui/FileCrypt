@@ -11,19 +11,6 @@ class FileCrypt;
 
 #define CALL_MEMBER_FN(object,ptrToMember)  ((object)->*(ptrToMember))
 
-namespace Status {
-    constexpr int OK = 0;
-    constexpr int FILE_ERROR = 1;
-    constexpr int KEY_ERROR = 2;
-    constexpr int OVERWRITE_ERROR = 3;
-    constexpr int ALREADY_CLOSED = 4;
-    constexpr int DECRYPTION_ERROR = 5;
-    constexpr int ENCRYPTION_ERROR = 6;
-    constexpr int INVALID_ARGS = 8;
-    constexpr int INVALID_MODE = 9;
-    constexpr int GENERATION_FAILURE = 10;
-}
-
 class FileCrypt {
     std::string* decrypt_internal(std::fstream *file, std::string &buffer);
     std::string* encrypt_internal(std::fstream *file, std::string &buffer);

@@ -34,7 +34,7 @@ std::string* FileCrypt::encrypt_internal(std::fstream *file, std::string &buffer
         CryptoPP::FileSource src(*file, true, 
             new CryptoPP::StreamTransformationFilter(enc, ss, CryptoPP::StreamTransformationFilter::PKCS_PADDING));
     } catch(CryptoPP::InvalidCiphertext &e) {
-        throw FileCryptException("Cannot encrypt file", Status::ENCRYPTION_ERROR);
+        throw FileCryptException("Cannot encrypt file", FileCryptException::ENCRYPTION_ERROR);
     }
     return &buffer;
 }
@@ -50,7 +50,7 @@ std::string* FileCrypt::decrypt_internal(std::fstream *file, std::string &buffer
                 new CryptoPP::StreamTransformationFilter(dec, ss, CryptoPP::StreamTransformationFilter::PKCS_PADDING)
         );
     } catch(CryptoPP::InvalidCiphertext &e) {
-        throw FileCryptException("Cannot decrypt file", Status::DECRYPTION_ERROR);
+        throw FileCryptException("Cannot decrypt file", FileCryptException::DECRYPTION_ERROR);
     }
 
     return &buffer;
@@ -114,7 +114,7 @@ void FileCrypt::dir(std::string path, FileCrypt::Operation op) {
 std::fstream* FileCrypt::open_file(std::string path, std::fstream::openmode mode) {
     std::fstream *file = new std::fstream(path, mode);
     if(file->good() == false) {
-        throw FileCryptException("Failed to open file.", Status::FILE_ERROR);
+        throw FileCryptException("Failed to open file.", FileCryptException::FILE_ERROR);
     }
     return file;
 }
@@ -131,7 +131,7 @@ void FileCrypt::load_keys(std::string path) {
     try {
         key_file = this->open_file(path, std::fstream::in | std::fstream::binary);
     } catch(FileCryptException &e) {
-        throw FileCryptException("Failed to load key file", Status::KEY_ERROR);
+        throw FileCryptException("Failed to load key file", FileCryptException::KEY_ERROR);
     }
 
     unsigned char key[CryptoPP::AES::DEFAULT_KEYLENGTH] = {};

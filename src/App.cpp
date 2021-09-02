@@ -1,4 +1,3 @@
-#include <gflags/gflags.h>
 #include <boost/filesystem.hpp>
 
 #include "FileCrypt.hpp"
@@ -6,11 +5,8 @@
 #include "Log.hpp"
 #include "Version.hpp"
 #include "Keygen.hpp"
+#include "Cmd.hpp"
 
-
-DEFINE_string(mode, "", "Operation mode [encrypt, decrypt, generate]");
-DEFINE_string(path, "", "Path to file/directory to encrypt/decrypt/generate.");
-DEFINE_string(key, "", "Path to key");
 
 int main(int argc, char **argv) {
     gflags::SetUsageMessage("Usage: fcrypt.exe --mode <mode> --path <path> --key <path>");
@@ -23,7 +19,7 @@ int main(int argc, char **argv) {
     } else if(FLAGS_mode.compare("generate") == 0) {
         if(Keygen::generate(FLAGS_path) == false) {
             Log::error("Key generation failed\n");
-            return Status::GENERATION_FAILURE;
+            return Status::GENERATION_ERROR;
         }
         boost::filesystem::path full_path(boost::filesystem::current_path());
         Log::infof("Key was written at %s\\%s\n", full_path.string().c_str(), FLAGS_path.c_str());
@@ -35,7 +31,7 @@ int main(int argc, char **argv) {
             operation = FileCrypt::Decrypt;
         } else {
             Log::error("Invalid mode\n");
-            return Status::INVALID_MODE;
+            return Status::INVALID_ARGS;
         }
 
         if(FLAGS_key.empty() == true) {

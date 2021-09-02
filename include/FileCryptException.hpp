@@ -3,6 +3,12 @@
 
 class FileCryptException {
 public:
+    enum {
+        ENCRYPTION_ERROR = 10,
+        DECRYPTION_ERROR = 11,
+        FILE_ERROR = 12,
+        KEY_ERROR = 13
+    };
     FileCryptException(const char *error, int code);
     int get_code();
     const char *what();
