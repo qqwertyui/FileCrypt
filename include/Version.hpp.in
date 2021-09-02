@@ -1,0 +1,5 @@
+namespace Version {
+    constexpr int MAJOR = @Filecrypt_VERSION_MAJOR@;
+    constexpr int MINOR = @Filecrypt_VERSION_MINOR@;
+    constexpr const char *STRING = "@Filecrypt_VERSION_MAJOR@.@Filecrypt_VERSION_MINOR@";
+}

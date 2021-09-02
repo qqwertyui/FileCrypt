@@ -1,0 +1,13 @@
+enum class Status {
+    OK = 0,
+    FILE_ERROR = 1,
+    KEY_ERROR = 2,
+    OVERWRITE_ERROR = 3,
+    ALREADY_CLOSED = 4,
+    DECRYPTION_ERROR = 5,
+    ENCRYPTION_ERROR = 6,
+    NOT_DIRECTORY_ERROR = 7,
+    INVALID_ARGS = 8,
+    INVALID_MODE = 9,
+    GENERATION_FAILURE = 10,
+};
