@@ -1,8 +1,8 @@
 #ifndef LOG_HPP
 #define LOG_HPP
 
-#include <string>
 #include <cstdarg>
+#include <string>
 
 namespace Log {
 void info(const char *msg);

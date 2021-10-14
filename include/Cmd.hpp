@@ -3,10 +3,7 @@
 
 #include <gflags/gflags.h>
 
-enum Status {
-    OK = 0,
-    INVALID_ARGS = 1
-};
+enum Status { OK = 0, INVALID_ARGS = 1 };
 
 DEFINE_string(mode, "", "Operation mode [encrypt, decrypt, generate]");
 DEFINE_string(path, "", "Path to file/directory to encrypt/decrypt/generate.");
